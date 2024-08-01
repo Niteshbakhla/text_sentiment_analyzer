@@ -1,6 +1,7 @@
 import React from 'react';
 
 const TextareaWithToolbar = () => {
+            
             return (
                         <div className="relative w-[400px] shadow-md">
                                     {/* Textarea */}
