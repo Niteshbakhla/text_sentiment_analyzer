@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { IoSyncOutline } from "react-icons/io5";
+import { DrawerPlacement } from './Drawer';
 
 const TextInput = () => {
             const [text, setText] = useState('');
@@ -8,7 +9,7 @@ const TextInput = () => {
             const [isLoading, setIsLoading] = useState(false);
             const [showNotification, setShowNotification] = useState(false);
             const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
+            const userName = localStorage.getItem("name")
             const getEmoji = (score) => {
                         if (score > 1) return '😊'; // Highly positive
                         if (score > 0.5) return '🙂'; // Slightly positive
@@ -36,7 +37,6 @@ const TextInput = () => {
                                     const response = await axios.post('http://localhost:3000/api/sentiment', { text });
                                     await delay(3000);
                                     setData(response.data);
-                                    console.log(response.data.result.score);
                         } catch (error) {
                                     console.error('Error analyzing sentiment', error);
                         }
@@ -54,15 +54,16 @@ const TextInput = () => {
 
             return (
                         <div className="min-h-screen bg-gradient-to-r from-blue-200 via-green-200 to-yellow-200/80 p-6 flex flex-col items-center justify-center  md:p-6 lg:p-8">
+                                    <h1 className='text-2xl text-[red]'>Welcome {userName.charAt(0).toUpperCase() + userName.slice(1)}</h1>
                                     <h1 className="text-4xl md:text-5xl lg:text-6xl text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 mb-6 animate-fadeIn">
                                                 Text Sentiment Analyzer
                                     </h1>
 
-                                    <form onSubmit={handleSubmit} className=' w-[900px]  flex flex-col items-center  space-y-4'>
+                                    <form onSubmit={handleSubmit} className=' w-full  lg:w-[900px]  flex flex-col items-center  space-y-4'>
                                                 <textarea
                                                             id="message"
                                                             rows="6"
-                                                            className="w-full lg:w-[600px] max-w-lg px-4 py-3 border border-gray-300 rounded-md shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                                                            className="lg:w-[400px] w-full max-w-lg px-4 py-3 border border-gray-300 rounded-md shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
                                                             placeholder="Type your message here..."
                                                             value={text} onChange={(e) => setText(e.target.value)}
                                                 />
@@ -86,7 +87,7 @@ const TextInput = () => {
                                                             <button type='button'
                                                                         onClick={() => {
                                                                                     setText('');
-                                                                                    setData(null);
+                                                                                     setData(null);
                                                                                     setIsLoading(false);
                                                                         }}
                                                                         className="w-10 h-10 md:w-12 md:h-12 font-semibold rounded-full shadow-md text-white transition-all duration-300 bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 flex items-center justify-center"
@@ -97,6 +98,7 @@ const TextInput = () => {
                                     </form>
                                     {data && (
                                                 <div className="mt-8 p-4 md:p-6 lg:p-8 border border-gray-300 rounded-lg shadow-lg bg-white max-w-lg w-full animate-fadeIn transition-transform transform">
+
                                                             <h3 className="text-2xl md:text-3xl font-bold mb-4 text-gray-800 border-b pb-2 border-gray-300">Sentiment Analysis Result</h3>
                                                             <div className={`p-4 md:p-6 mb-4 rounded-lg text-center shadow-md ${data.result.score > 1
                                                                         ? 'bg-gradient-to-r from-green-400 to-green-600 text-white'
@@ -127,6 +129,7 @@ const TextInput = () => {
                                                             </button>
                                                 </div>
                                     )}
+                                    <DrawerPlacement name={userName} />
                         </div>
             );
 };
