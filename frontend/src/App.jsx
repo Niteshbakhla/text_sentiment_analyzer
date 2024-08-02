@@ -3,17 +3,19 @@ import './App.css'
 import TextInput from './components/TextInput'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Welcome from './components/Welcome'
+import History from './components/ShowHistory'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const name = localStorage.getItem("name")
 
   return (
     <>
-
       <Router>
         <Routes>
-          <Route path='/write_text' element={<TextInput />} />
           <Route path='/' element={<Welcome />} />
+          <Route path='/write_text' element={name ? <TextInput /> : "fill your name"} />
+          <Route path='/history' element={<History />} />
         </Routes>
       </Router>
     </>
