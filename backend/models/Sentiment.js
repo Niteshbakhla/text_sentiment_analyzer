@@ -10,3 +10,4 @@ const sentimentSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Sentiment', sentimentSchema);
+            
