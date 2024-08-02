@@ -1,13 +1,29 @@
 const Sentiment = require('sentiment');
+const sentimentSchema = require("../models/Sentiment")
 const sentiment = new Sentiment();
 
-const analyzeSentiment = (req, res) => {
+const analyzeSentiment = async (req, res) => {
             const { text } = req.body;
-            if (!text) {
-                        return res.status(400).json({ message: 'Text is required' });
+            try {
+                        if (!text) {
+                                    return res.status(400).json({ message: 'Text is required' });
+                        }
+                        const result = sentiment.analyze(text);
+                        const { score, comparative, tokens, positive, negative } = result
+                        const sentimentPost = new sentimentSchema({
+                                    score,
+                                    comparative,
+                                    tokens,
+                                    positive,
+                                    negative,
+                                    text
+                        });
+                        await sentimentPost.save();
+
+                        return res.status(200).json({ success: true, result:sentimentPost })
+            } catch (error) {
+                        return res.status(500).json({ success: false, message: error.message })
             }
-            const result = sentiment.analyze(text);
-            return res.status(200).json({ success: true, result })
 };
 
 module.exports = { analyzeSentiment };
