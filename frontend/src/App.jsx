@@ -1,15 +1,21 @@
 import { useState } from 'react'
 import './App.css'
 import TextInput from './components/TextInput'
-import TextareaWithToolbar from './components/Text'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Welcome from './components/Welcome'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
- 
-      <TextInput />
+
+      <Router>
+        <Routes>
+          <Route path='/write_text' element={<TextInput />} />
+          <Route path='/' element={<Welcome />} />
+        </Routes>
+      </Router>
     </>
   )
 }
