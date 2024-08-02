@@ -7,7 +7,6 @@ const sentimentSchema = new mongoose.Schema({
             tokens: { type: Array, required: true },
             positive: { type: Array, required: true },
             negative: { type: Array, required: true },
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Sentiment', sentimentSchema);
-            
