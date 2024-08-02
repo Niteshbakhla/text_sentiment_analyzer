@@ -58,7 +58,7 @@ const TextInput = () => {
                                                 Text Sentiment Analyzer
                                     </h1>
 
-                                    <form onSubmit={handleSubmit} className=' w-[300px] flex flex-col items-center  space-y-4'>
+                                    <form onSubmit={handleSubmit} className=' w-[900px]  flex flex-col items-center  space-y-4'>
                                                 <textarea
                                                             id="message"
                                                             rows="6"

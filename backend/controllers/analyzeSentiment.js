@@ -20,10 +20,22 @@ const analyzeSentiment = async (req, res) => {
                         });
                         await sentimentPost.save();
 
-                        return res.status(200).json({ success: true, result:sentimentPost })
+                        return res.status(200).json({ success: true, result: sentimentPost })
             } catch (error) {
                         return res.status(500).json({ success: false, message: error.message })
             }
 };
 
-module.exports = { analyzeSentiment };
+
+getHistory = async (req, res) => {
+            try {
+                        const history = await sentimentSchema.find().sort({ date: -1 }).limit(10);
+                        return res.status(200).json({ success: true, history })
+            } catch (error) {
+
+                        return res.status(500).json({ success: false, message: error.message })
+
+            }
+}
+
+module.exports = { analyzeSentiment, getHistory };

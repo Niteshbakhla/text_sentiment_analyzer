@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use("/api/sentiment", router)
+app.use("/api/sentiment", sentimentRouter)
 app.use("/", userRouter)
 
 
