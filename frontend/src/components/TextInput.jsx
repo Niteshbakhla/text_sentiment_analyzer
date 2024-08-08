@@ -28,14 +28,15 @@ const TextInput = () => {
 
             const handleSubmit = async (e) => {
                         e.preventDefault();
+
                         if (!text.trim()) {
                                     setShowNotification(true);
                                     return;
                         }
                         setIsLoading(true);
                         try {
-                                    const response = await axios.post('http://localhost:3000/api/sentiment', { text });
-                                    await delay(3000);
+                                    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/sentiment`, { text });
+                                    await delay(2000);
                                     setData(response.data);
                         } catch (error) {
                                     console.error('Error analyzing sentiment', error);
@@ -43,6 +44,11 @@ const TextInput = () => {
                         setIsLoading(false);
                         setText("");
             };
+
+
+
+
+
 
             const closeNotification = () => {
                         setShowNotification(false);
@@ -61,6 +67,7 @@ const TextInput = () => {
 
                                     <form onSubmit={handleSubmit} className=' w-full  lg:w-[900px]  flex flex-col items-center  space-y-4'>
                                                 <textarea
+
                                                             id="message"
                                                             rows="6"
                                                             className="lg:w-[400px] w-full max-w-lg px-4 py-3 border border-gray-300 rounded-md shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
@@ -70,6 +77,7 @@ const TextInput = () => {
                                                 <div className=' flex flex-row md:flex-row justify-center items-center gap-4'>
                                                             <button
                                                                         type="submit"
+
                                                                         onClick={() => {
                                                                                     document.getElementById('submit-btn').classList.add('animate-jump');
                                                                                     setTimeout(() => {
@@ -87,7 +95,7 @@ const TextInput = () => {
                                                             <button type='button'
                                                                         onClick={() => {
                                                                                     setText('');
-                                                                                     setData(null);
+                                                                                    setData(null);
                                                                                     setIsLoading(false);
                                                                         }}
                                                                         className="w-10 h-10 md:w-12 md:h-12 font-semibold rounded-full shadow-md text-white transition-all duration-300 bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 flex items-center justify-center"

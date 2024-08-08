@@ -5,19 +5,28 @@ import {
             Typography,
             IconButton,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 export function DrawerPlacement({ name }) {
 
             const [openLeft, setOpenLeft] = React.useState(false);
             const openDrawerLeft = () => setOpenLeft(true);
             const closeDrawerLeft = () => setOpenLeft(false);
+            const navigate = useNavigate()
 
-
+            const logoutHandle = () => {
+                        localStorage.removeItem("name")
+                        toast.success("logged out")
+                        setTimeout(() => {
+                                    navigate("/")
+                        }, 2000)
+            }
 
 
             return (
                         <React.Fragment>
+                                    <Toaster position="top-center" />
                                     <div className="flex flex-wrap gap-4 fixed left-2 top-4 ">
                                                 <Button onClick={openDrawerLeft} className="rounded-full text-center text-2xl">{name.charAt(0)}</Button>
                                     </div>
@@ -59,6 +68,12 @@ export function DrawerPlacement({ name }) {
                                                                                     History
                                                                         </Button>
                                                             </Link>
+
+
+                                                            <Button onClick={logoutHandle} size="sm" variant="outlined">
+                                                                        logout
+                                                            </Button>
+
                                                 </div>
                                     </Drawer>
                         </React.Fragment>
