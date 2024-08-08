@@ -38,4 +38,20 @@ getHistory = async (req, res) => {
             }
 }
 
-module.exports = { analyzeSentiment, getHistory };
+deleteHistory = async (req, res) => {
+            try {
+                        const { id } = req.params;
+                      
+                        await sentimentSchema.findByIdAndDelete(id);
+
+                        if (!post) return res.status(404).json({ success: false, message: "post not found" })
+
+                        return res.status(200).json({ success: true, message: "Successfully Deleted" })
+
+
+            } catch (error) {
+                        return res.status(500).json({ success: false, message: error.message })
+            }
+}
+
+module.exports = { analyzeSentiment, getHistory, deleteHistory };
