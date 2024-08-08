@@ -15,14 +15,18 @@ export function DialogDefault({ name }) {
             const [open, setOpen] = React.useState(false);
 
             const handleOpen = () => {
-                        setOpen(!open);
+                        setOpen(true)
                         open && handleSubmit()
+            }
+
+            const cancleOpen = () => {
+                        setOpen(false)
             }
 
             const handleSubmit = async () => {
 
                         try {
-                                    const { data } = await axios.post("http://localhost:3000/username", { name });
+                                    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/username`, { name });
                                     localStorage.setItem("name", data.data.name);
                                     setTimeout(() => {
                                                 navigate("/write_text")
@@ -52,12 +56,9 @@ export function DialogDefault({ name }) {
                                                 Submit
                                     </Button>
                                     <Dialog open={open} handler={handleOpen}>
-                                                <DialogHeader>Its a simple dialog.</DialogHeader>
+                                                <DialogHeader>Confirm your name: {name.charAt(0).toUpperCase()+name.slice(1)}</DialogHeader>
                                                 <DialogBody>
-                                                            The key to more success is to have a lot of pillows. Put it this way,
-                                                            it took me twenty five years to get these plants, twenty five years of
-                                                            blood sweat and tears, and I&apos;m never giving up, I&apos;m just
-                                                            getting started. I&apos;m up to something. Fan luv.
+
                                                 </DialogBody>
                                                 <DialogFooter>
 
@@ -65,12 +66,12 @@ export function DialogDefault({ name }) {
                                                             <Button
                                                                         variant="text"
                                                                         color="red"
-                                                                        onClick={handleOpen}
+                                                                        onClick={cancleOpen}
                                                                         className="mr-1"
                                                             >
                                                                         <span>Cancel</span>
                                                             </Button>
-                                                            <Button variant="gradient" color="green" onClick={handleOpen}>
+                                                            <Button variant="gradient" color="green" onClick={() => handleOpen()}>
                                                                         <span>Confirm</span>
                                                             </Button>
                                                 </DialogFooter>
