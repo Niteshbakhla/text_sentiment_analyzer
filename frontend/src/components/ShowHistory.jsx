@@ -5,6 +5,7 @@ import { Button } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';
 import { MdDeleteOutline } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
+import toast, { Toaster } from 'react-hot-toast';
 
 function History() {
             const [history, setHistory] = useState([]);
@@ -13,26 +14,17 @@ function History() {
             const ref = useRef([])
 
 
-            const deleteHistory = async (id, index) => {
-                        setIsDelete(!isDelete)
-                        ref.current[index].classList.add("delete-animation")
-                        setTimeout(async () => {
-                                    setIsDelete(!isDelete);
-                                    try {
-                                                const res = await axios.delete(`${import.meta.env.VITE_API_URL}/api/sentiment/deleteHistory/${id}`);
-                                                console.log(res);
-                                    } catch (error) {
-                                                console.log(error);
-                                    }
-                        }, 500);
-            }
 
             useEffect(() => {
                         const fetchHistory = async () => {
                                     setIsLoading(true);
                                     try {
-                                                const response = await axios.get(`${import.meta.env.VITE_API_URL}/history`);
-                                                setHistory(response.data.history);
+                                                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/history`, {
+                                                            headers: {
+                                                                        "Authorization": "Bearer " + localStorage.getItem("token")
+                                                            }
+                                                });
+                                                setHistory(data.user.history);
                                     } catch (error) {
                                                 console.error('Error fetching history:', error);
                                     }
@@ -40,13 +32,31 @@ function History() {
                         };
 
                         fetchHistory();
-            }, [deleteHistory]);
+            }, [isDelete]);
 
+            const deleteHistory = async (id, index) => {
+                        setIsDelete(!isDelete)
+                        ref.current[index].classList.add("delete-animation")
+                        setTimeout(async () => {
+                                    setIsDelete(!isDelete);
+                                    try {
+                                                const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/api/sentiment/deleteHistory/${id}`, {
+                                                            headers: {
+                                                                        "Authorization": "Bearer " + localStorage.getItem("token")
+                                                            }
+                                                });
+                                                toast.success(data.message)
+                                    } catch (error) {
+                                                console.log(error);
+                                    }
+                        }, 500);
+            }
 
 
 
             return (
                         <div className="min-h-screen bg-gradient-to-r from-blue-200 via-green-200 to-yellow-200/80 p-6 flex flex-col items-center justify-center md:p-6 lg:p-8">
+                                    <Toaster position='top-center' />
                                     <Link to="/write_text" className='sticky lg:absolute left-4 top-4 '>
                                                 <Button>Back</Button>
                                     </Link>
@@ -82,7 +92,7 @@ function History() {
                                                 </ul>
 
                                     </div>
-                              
+
 
                         </div>
             );

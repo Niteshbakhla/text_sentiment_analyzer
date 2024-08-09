@@ -10,7 +10,7 @@ import axios from 'axios';
 import { Toaster, toast } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 
-export function DialogDefault({ name }) {
+export function DialogDefault({ name, username }) {
             const navigate = useNavigate();
             const [open, setOpen] = React.useState(false);
 
@@ -26,7 +26,7 @@ export function DialogDefault({ name }) {
             const handleSubmit = async () => {
 
                         try {
-                                    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/username`, { name });
+                                    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/username`, { name,username });
                                     localStorage.setItem("name", data.data.name);
                                     localStorage.setItem("token", data.token)
                                     setTimeout(() => {

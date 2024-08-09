@@ -8,6 +8,7 @@ import { DialogDefault } from './Dialogue';
 
 const Welcome = () => {
             const [name, setName] = useState('');
+            const [username, setUserName] = useState("")
             const [isValid, setIsValid] = useState(true);
             const [touched, setTouched] = useState(false);
 
@@ -23,9 +24,13 @@ const Welcome = () => {
             const handleChange = (e) => {
                         const value = e.target.value;
                         setName(value);
-                        setIsValid(validateName(value));
-                        if (!touched) setTouched(true);
+
             };
+
+            const handleUserName = (e) => {
+                        const value = e.target.value
+                        setUserName(value)
+            }
 
             return (
                         <div className='w-[100vw] min-h-[100vh]  md:bg-gradient-to-r from-blue-600 to-violet-600 bg-gradient-to-r from-violet-200 to-pink-200  grid place-content-center'>
@@ -35,14 +40,24 @@ const Welcome = () => {
                                                 <div>
                                                             <div className="relative md:w-[800px] px-4 ">
                                                                         <div className='flex flex-col  items-center'>
-                                                                                    <h1 className="md:text-8xl text-[12vw] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-black/30  to-red-500 bg-[length:200%_200%] animate-gradient-move">
+                                                                                    <h1 className="md:text-8xl text-[12vw] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-blue-900  to-red-800 bg-[length:200%_200%] animate-gradient-move">
                                                                                                 Enter your name
                                                                                     </h1>
                                                                                     <input
                                                                                                 type="text"
                                                                                                 value={name.charAt(0).toUpperCase() + name.slice(1)}
-
+                                                                                                name="name"
+                                                                                                placeholder='Enter your name'
                                                                                                 onChange={handleChange}
+                                                                                                className="md:w-[500px] md:h-[60px] w-[90vw] px-4  rounded-full bg-transparent border-2 border-red-500 outline-none text-4xl mt-4 focus:border-black "
+                                                                                    />
+                                                                                    <input
+                                                                                                type="text"
+                                                                                                value={`${"@", username}`}
+                                                                                                place="username"
+placeholder='Enter your username'
+                                                                                                name="username"
+                                                                                                onChange={handleUserName}
                                                                                                 className="md:w-[500px] md:h-[60px] w-[90vw] px-4  rounded-full bg-transparent border-2 border-red-500 outline-none text-4xl mt-4 focus:border-black "
                                                                                     />
 
@@ -53,8 +68,7 @@ const Welcome = () => {
                                                                         </div>
 
                                                                         <div className='text-center'>
-                                                                                    <DialogDefault name={name} />
-
+                                                                                    <DialogDefault name={name} username={username} />
                                                                         </div>
 
                                                             </div>
