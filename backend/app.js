@@ -4,13 +4,17 @@ const bodyParser = require('body-parser');
 const { connectDB } = require("./Database/connectionDB");
 const sentimentRouter = require('./routes/sentiment');
 const userRouter = require("./routes/userRoutes")
+require("dotenv").config()
 connectDB()
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 const app = express();
-const dotenv = require("dotenv")
-app.use(cors());
+app.use(cors(
+            {
+                        origin: process.env.CLIENT_URL
+            }
+));
 app.use(bodyParser.json());
-dotenv.config()
+
 
 
 app.use("/api/sentiment", sentimentRouter)

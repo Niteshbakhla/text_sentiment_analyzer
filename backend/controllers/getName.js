@@ -3,6 +3,7 @@ const SentimentSchema = require("../models/Sentiment")
 const jwt = require("jsonwebtoken")
 
 exports.getName = async (req, res) => {
+            
             try {
                         const { name, username } = req.body
                         let isExistUser = await userName.findOne({ username })

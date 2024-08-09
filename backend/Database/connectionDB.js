@@ -2,7 +2,7 @@ const { connect } = require("mongoose")
 
 exports.connectDB = async () => {
             try {
-                        const connection = await connect("mongodb://127.0.0.1:27017/textSentimentAnalyzer")
+                        const connection = await connect(process.env.MONGODB_URI)
                         if (connection.STATES.connected) {
                                     console.log("mongodb is connected")
                         }
