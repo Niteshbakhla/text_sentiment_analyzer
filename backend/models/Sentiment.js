@@ -9,4 +9,8 @@ const sentimentSchema = new mongoose.Schema({
             negative: { type: Array, required: true },
 }, { timestamps: true });
 
-module.exports = mongoose.model('Sentiment', sentimentSchema);
+
+
+const SentimentSchema = mongoose.model('Sentiment', sentimentSchema);
+
+module.exports = SentimentSchema
