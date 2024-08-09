@@ -4,24 +4,27 @@ const jwt = require("jsonwebtoken")
 
 exports.getName = async (req, res) => {
             try {
-                        const { name } = req.body
+                        const { name, username } = req.body
+                        let isExistUser = await userName.findOne({ username })
 
                         if (name === "") {
-                                    return res.status(404).json({ success: false, message: "Enter your name" })
+                                    return res.status(200).json({ success: false, message: "Enter your name" })
                         }
 
-                        const userSchema = new userName({
-                                    name
-                        });
-                        await userSchema.save();
+                        if (!isExistUser) {
+                                    isExistUser = new userName({
+                                                name,
+                                                username
+                                    });
+                                    await isExistUser.save();
+                                    return res.status(200).json({ success: false, message: "user already exist" })
+                        }
+                        const token = jwt.sign({ _id: isExistUser._id }, process.env.JWT_SECRET, { expiresIn: "30m" })
 
-                        const token = jwt.sign({ _id: userSchema._id }, process.env.JWT_SECRET)
-
-
-
-                        return res.status(200).json({ success: true, data: userSchema, token })
+                        return res.status(200).json({ success: true, data: isExistUser, token })
 
             } catch (error) {
                         return res.status(500).json({ success: false, message: "Internal Server error" })
+                        console.log(error)
             }
 }
