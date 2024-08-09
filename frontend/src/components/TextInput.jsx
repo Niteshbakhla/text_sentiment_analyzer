@@ -35,7 +35,11 @@ const TextInput = () => {
                         }
                         setIsLoading(true);
                         try {
-                                    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/sentiment`, { text });
+                                    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/sentiment`, { text }, {
+                                                headers: {
+                                                            "Authorization": "Bearer " + localStorage.getItem("token")
+                                                }
+                                    });
                                     await delay(2000);
                                     setData(response.data);
                         } catch (error) {
@@ -44,11 +48,6 @@ const TextInput = () => {
                         setIsLoading(false);
                         setText("");
             };
-
-
-
-
-
 
             const closeNotification = () => {
                         setShowNotification(false);
