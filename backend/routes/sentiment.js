@@ -4,6 +4,6 @@ const { verifyToken } = require("../controllers/verifyToken")
 const router = require("express").Router()
 
 router.post("/", verifyToken, analyzeSentiment)
-router.delete("/deleteHistory/:id", deleteHistory)
+router.delete("/deleteHistory/:id", verifyToken, deleteHistory)
 
 module.exports = router
