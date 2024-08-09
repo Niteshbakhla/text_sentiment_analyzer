@@ -28,6 +28,7 @@ export function DialogDefault({ name }) {
                         try {
                                     const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/username`, { name });
                                     localStorage.setItem("name", data.data.name);
+                                    localStorage.setItem("token", data.token)
                                     setTimeout(() => {
                                                 navigate("/write_text")
                                     }, 1000)
@@ -56,7 +57,7 @@ export function DialogDefault({ name }) {
                                                 Submit
                                     </Button>
                                     <Dialog open={open} handler={handleOpen}>
-                                                <DialogHeader>Confirm your name: {name.charAt(0).toUpperCase()+name.slice(1)}</DialogHeader>
+                                                <DialogHeader>Confirm your name: {name.charAt(0).toUpperCase() + name.slice(1)}</DialogHeader>
                                                 <DialogBody>
 
                                                 </DialogBody>
