@@ -36,9 +36,12 @@ const analyzeSentiment = async (req, res) => {
 
 
 getHistory = async (req, res) => {
+            const id = req.id
+
             try {
-                        const history = await Sentiment.find().sort({ date: -1 }).limit(10);
-                        return res.status(200).json({ success: true, history })
+                        const user = await userName.findById(id).populate("history")
+                        // const history = await Sentiment.find().sort({ date: -1 }).limit(10);
+                        return res.status(200).json({ success: true, user })
             } catch (error) {
 
                         return res.status(500).json({ success: false, message: error.message })
@@ -49,10 +52,13 @@ getHistory = async (req, res) => {
 deleteHistory = async (req, res) => {
             try {
                         const { id } = req.params;
+                        const ids = req.id
+                        await SentimentSchema.findByIdAndDelete(id);
 
-                        await Sentiment.findByIdAndDelete(id);
+                        await userName.findByIdAndUpdate(ids, {
+                                    $pull: { history: id },
 
-                        if (!post) return res.status(404).json({ success: false, message: "post not found" })
+                        }, { new: true })
 
                         return res.status(200).json({ success: true, message: "Successfully Deleted" })
 
