@@ -15,7 +15,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Welcome />} />
-        <Route path='/write_text' element={token ? <TextInput /> : "fill your name"} />
+        <Route path='/write_text' element={token ? <TextInput /> : "some Error"} />
         <Route path='/history' element={<History />} />
       </Routes>
 

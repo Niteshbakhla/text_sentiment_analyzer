@@ -26,7 +26,7 @@ export function DialogDefault({ name, username }) {
             const handleSubmit = async () => {
 
                         try {
-                                    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/username`, { name,username });
+                                    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/username`, { name, username });
                                     localStorage.setItem("name", data.data.name);
                                     localStorage.setItem("token", data.token)
                                     setTimeout(() => {
