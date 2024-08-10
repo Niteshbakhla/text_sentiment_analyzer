@@ -3,6 +3,8 @@ import axios from 'axios';
 import { IoSyncOutline } from "react-icons/io5";
 import { DrawerPlacement } from './Drawer';
 
+
+
 const TextInput = () => {
             const [text, setText] = useState('');
             const [data, setData] = useState(null);
@@ -59,6 +61,7 @@ const TextInput = () => {
 
             return (
                         <div className="min-h-screen bg-gradient-to-r from-blue-200 via-green-200 to-yellow-200/80 p-6 flex flex-col items-center justify-center  md:p-6 lg:p-8">
+
                                     <h1 className='text-2xl text-[red]'>Welcome {userName.charAt(0).toUpperCase() + userName.slice(1)}</h1>
                                     <h1 className="text-4xl md:text-5xl lg:text-6xl text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 mb-6 animate-fadeIn">
                                                 Text Sentiment Analyzer
@@ -102,6 +105,9 @@ const TextInput = () => {
                                                                         <IoSyncOutline size={24} />
                                                             </button>
                                                 </div>
+
+
+
                                     </form>
                                     {data && (
                                                 <div className="mt-8 p-4 md:p-6 lg:p-8 border border-gray-300 rounded-lg shadow-lg bg-white max-w-lg w-full animate-fadeIn transition-transform transform">
@@ -121,10 +127,10 @@ const TextInput = () => {
                                                                         <p className="text-xl md:text-2xl font-semibold mb-2">{getSentimentLabel(data.result.score)}</p>
                                                             </div>
                                                             <div className="space-y-2">
-                                                                        <p className="text-base md:text-lg"><strong>Score:</strong> <span className="font-bold">{data.result.score}</span></p>
+                                                                        <p className="text-base md:text-lg"><strong>Score:</strong> <span className="">{data.result.score}</span></p>
                                                                         <p className="text-base md:text-lg"><strong>Comparative:</strong> <span className="font-bold">{getEmoji(data.result.comparative)}</span></p>
-                                                                        <p className="text-base md:text-lg"><strong>Positive Words:</strong> <span className="font-semibold">{data.result.positive.join(", ")}</span></p>
-                                                                        <p className="text-base md:text-lg"><strong>Negative Words:</strong> <span className="font-semibold">{data.result.negative}</span></p>
+                                                                        <p className="text-base md:text-lg"><strong>Positive Words:</strong> <span className="">{data.result.positive.join(", ")}</span></p>
+                                                                        <p className="text-base md:text-lg"><strong>Negative Words:</strong> <span className="">{data.result.negative.join(", ")}</span></p>
                                                             </div>
                                                 </div>
                                     )}
