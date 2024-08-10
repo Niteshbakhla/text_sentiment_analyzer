@@ -30,20 +30,22 @@ const Welcome = () => {
                         <div className='w-[100vw] min-h-[100vh]  md:bg-gradient-to-r from-blue-600 to-violet-600 bg-gradient-to-r from-violet-200 to-pink-200  grid place-content-center'>
                                     <Toaster position='top-center' />
 
-                                    <div className="space-y-4   p-6  ">
+                                    <div className="space-y-4  lg:p-6  ">
                                                 <div>
-                                                            <div className="relative md:w-[850px] px-4  ">
-                                                                        <div className='flex flex-col  items-center w-full'>
-                                                                                    <h1 className="md:text-8xl text-[12vw] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-blue-900  to-red-800 bg-[length:200%_200%] animate-gradient-move">
-                                                                                                Enter your name
-                                                                                    </h1>
+                                                            <div className="relative md:w-[900px] px-4    ">
+                                                                        <div className='flex flex-col  items-center w-full  '>
+                                                                                    <div className=''>
+                                                                                                <h1 className="md:text-8xl   text-[10vw] lg:h-[20vh] h-[10vh] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-blue-900  to-red-800 bg-[length:200%_200%] animate-gradient-move">
+                                                                                                            Enter your name
+                                                                                                </h1>
+                                                                                    </div>
                                                                                     <input
                                                                                                 type="text"
                                                                                                 value={name.charAt(0).toUpperCase() + name.slice(1)}
                                                                                                 name="name"
                                                                                                 placeholder='Enter your name'
                                                                                                 onChange={handleChange}
-                                                                                                className="md:w-[500px] md:h-[60px] w-[90vw] px-4  rounded-full bg-transparent border-2 border-red-500 outline-none text-4xl mt-4 focus:border-black "
+                                                                                                className="md:w-[500px] md:h-[60px] w-[90vw] px-4 placeholder:text-justify   rounded-full bg-transparent border-2 border-red-500 outline-none text-2xl lg:text-4xl mt-4 focus:border-black "
                                                                                     />
                                                                                     <input
                                                                                                 type="text"
@@ -52,7 +54,7 @@ const Welcome = () => {
                                                                                                 placeholder='Enter your username'
                                                                                                 name="username"
                                                                                                 onChange={handleUserName}
-                                                                                                className="md:w-[500px] md:h-[60px] w-[90vw] px-4  rounded-full bg-transparent border-2 border-red-500 outline-none text-4xl mt-4 focus:border-black "
+                                                                                                className="md:w-[500px] md:h-[60px] w-[90vw] px-4  rounded-full bg-transparent border-2 border-red-500 outline-none text-2xl lg:text-4xl mt-4 focus:border-black "
                                                                                     />
 
 
