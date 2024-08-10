@@ -16,12 +16,9 @@ const Welcome = () => {
                         return regex.test(input) && input.trim().length > 0;
             };
 
-
-
             const handleChange = (e) => {
                         const value = e.target.value;
                         setName(value);
-
             };
 
             const handleUserName = (e) => {
