@@ -35,7 +35,7 @@ const Welcome = () => {
                                                             <div className="relative md:w-[800px] px-4 ">
                                                                         <div className='flex flex-col  items-center'>
                                                                                     <h1 className="md:text-8xl text-[12vw] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-blue-900  to-red-800 bg-[length:200%_200%] animate-gradient-move">
-                                                                                                Enter your name
+                                                                                                Enter your nam
                                                                                     </h1>
                                                                                     <input
                                                                                                 type="text"
