@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Loader } from 'rsuite';
+import { Loader } from 'semantic-ui-react'
 import {
             Button,
             Dialog,
@@ -76,8 +76,9 @@ export function DialogDefault({ name, username }) {
                                                             >
                                                                         <span>Cancel</span>
                                                             </Button>
-                                                            <Button variant="gradient" color="green" onClick={() => handleOpen()}>
-                                                                        <span>{loader ? <Loader /> : "Confirm"}</span>
+                                                            <Button variant="gradient" color={loader ? "white" : "green"} onClick={() => handleOpen()}>
+                                                                        <span>{loader ? <Loader active inline /> : "Confirm"}</span>
+
                                                             </Button>
                                                 </DialogFooter>
                                     </Dialog>

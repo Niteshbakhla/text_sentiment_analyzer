@@ -3,6 +3,7 @@ import './App.css'
 import TextInput from './components/TextInput'
 import { Routes, Route, useNavigate, } from "react-router-dom"
 import Welcome from './components/Welcome'
+import 'semantic-ui-css/semantic.min.css'
 import History from './components/ShowHistory'
 
 function App() {
