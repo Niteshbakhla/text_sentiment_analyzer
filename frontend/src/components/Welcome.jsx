@@ -51,7 +51,7 @@ const Welcome = () => {
                                                                                                 type="text"
                                                                                                 value={`${"@", username}`}
                                                                                                 place="username"
-                                                                                                placeholder='Enter your username'
+                                                                                                placeholder='@Derek'
                                                                                                 name="username"
                                                                                                 onChange={handleUserName}
                                                                                                 className="md:w-[500px] md:h-[60px] w-[90vw] px-4  rounded-full bg-transparent border-2 border-red-500 outline-none text-2xl lg:text-4xl mt-4 focus:border-black "
