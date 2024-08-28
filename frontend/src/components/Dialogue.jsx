@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Loader } from 'rsuite';
 import {
             Button,
             Dialog,
@@ -13,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 export function DialogDefault({ name, username }) {
             const navigate = useNavigate();
             const [open, setOpen] = React.useState(false);
+            const [loader, setLoader] = useState(false)
 
             const handleOpen = () => {
                         setOpen(true)
@@ -24,11 +26,13 @@ export function DialogDefault({ name, username }) {
             }
 
             const handleSubmit = async () => {
+                        setLoader(true)
 
                         try {
                                     const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/username`, { name, username });
                                     localStorage.setItem("name", data.data.name);
                                     localStorage.setItem("token", data.token)
+                                    setLoader(false)
                                     setTimeout(() => {
                                                 navigate("/write_text")
                                     }, 1000)
@@ -73,7 +77,7 @@ export function DialogDefault({ name, username }) {
                                                                         <span>Cancel</span>
                                                             </Button>
                                                             <Button variant="gradient" color="green" onClick={() => handleOpen()}>
-                                                                        <span>Confirm</span>
+                                                                        <span>{loader ? <Loader /> : "Confirm"}</span>
                                                             </Button>
                                                 </DialogFooter>
                                     </Dialog>
