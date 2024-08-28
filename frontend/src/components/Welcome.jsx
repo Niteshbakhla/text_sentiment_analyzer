@@ -45,7 +45,7 @@ const Welcome = () => {
                                                                                                 name="name"
                                                                                                 placeholder='Enter your name'
                                                                                                 onChange={handleChange}
-                                                                                                className="md:w-[500px] md:h-[60px] w-[90vw] px-4 placeholder:text-justify   rounded-full bg-transparent border-2 border-red-500 outline-none text-2xl lg:text-4xl mt-4 focus:border-black "
+                                                                                                className="md:w-[500px] md:h-[60px] w-[90vw] text-black/20 px-4 placeholder:text-justify   rounded-full bg-transparent border-2 border-red-500 outline-none text-2xl lg:text-4xl mt-4 focus:border-black "
                                                                                     />
                                                                                     <input
                                                                                                 type="text"
@@ -54,7 +54,7 @@ const Welcome = () => {
                                                                                                 placeholder='@Derek'
                                                                                                 name="username"
                                                                                                 onChange={handleUserName}
-                                                                                                className="md:w-[500px] md:h-[60px] w-[90vw] px-4  rounded-full bg-transparent border-2 border-red-500 outline-none text-2xl lg:text-4xl mt-4 focus:border-black "
+                                                                                                className="md:w-[500px] md:h-[60px] w-[90vw] px-4 text-black/20  rounded-full bg-transparent border-2 border-red-500 outline-none text-2xl lg:text-4xl mt-4 focus:border-black "
                                                                                     />
 
 
