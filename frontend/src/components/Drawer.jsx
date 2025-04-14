@@ -16,7 +16,7 @@ export function DrawerPlacement({ name }) {
             const navigate = useNavigate()
 
             const logoutHandle = () => {
-                   closeDrawerLeft()       
+                        closeDrawerLeft()
                         localStorage.removeItem("name")
                         toast.success("logged out")
                         setTimeout(() => {
